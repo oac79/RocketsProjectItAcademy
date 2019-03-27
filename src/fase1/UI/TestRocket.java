@@ -20,11 +20,12 @@ public class TestRocket {
 			rocket1 = new Rocket(code1, propeller1);
 
 			code2 = "LDSFJA32";
-			propeller2 = Arrays.asList(20, 40, 80, 160, 320, 640);
+			propeller2 = Arrays.asList(20, 40, 640, 160, 320, 80);
 			rocket2 = new Rocket(code2, propeller2);
 
 			System.out.println("--1--" + rocket1.toString());
 			System.out.println("--2--" + rocket2.toString());
+
 		}
 
 }
