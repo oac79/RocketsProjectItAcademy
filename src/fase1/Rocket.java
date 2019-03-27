@@ -2,10 +2,10 @@ package fase1;
 
 import java.util.List;
 
-import fase1.controller.RocketManagement;
+import fase1.controller.RocketHandlers;
 
 public class Rocket {
-	private RocketManagement rocketMan;
+	private RocketHandlers rocketMan;
 	private String code;
 	private List<Integer> propellers;
 
@@ -18,7 +18,7 @@ public class Rocket {
 		{
 
 			boolean checkCode;
-			rocketMan = new RocketManagement();
+			rocketMan = new RocketHandlers();
 			checkCode = rocketMan.checkCode(code);
 			if (!checkCode)
 				throw new Exception("--Code ERROR--");
