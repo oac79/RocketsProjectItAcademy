@@ -1,8 +1,8 @@
 package app.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import app.exception.MyException;
 import app.model.Propeller;
 
 public class RocketHandlers {
@@ -13,10 +13,10 @@ public class RocketHandlers {
 		}
 
 	// Method fase2
-	public int maxPropeller(List<Propeller> propellers)
+	public double maxPropeller(List<Propeller> propellers)
 		{
 			int i;
-			int max = propellers.get(0).getPower();
+			double max = propellers.get(0).getPower();
 			for (i = 1; i < propellers.size(); i++)
 				{
 					if (max < propellers.get(i).getPower())
@@ -28,35 +28,113 @@ public class RocketHandlers {
 		}
 
 	// Method fase3
-	public int averageSpeed(List<Integer> propellersList)
+	public double averageSpeed(List<Propeller> propellersList)
 		{
 			int i;
-			int speed = propellersList.get(0);
-			int propellers = propellersList.size();
+			double speed = propellersList.get(0).getPower();
+			double propellers = propellersList.size();
 			for (i = 1; i < propellersList.size(); i++)
 				{
-					speed += propellersList.get(i);
+					speed += propellersList.get(i).getPower();
 				}
 			return speed / propellers;
 		}
 
 	// Method fase3
-	public List<Integer> speedUp(List<Integer> propellersList)
+	public double speedUp(List<Propeller> propellersList)
 		{
-			List<Integer> speedUpTen = new ArrayList<Integer>();
 			int i;
+			double power = 0;
 			for (i = 0; i < propellersList.size(); i++)
 				{
-					speedUpTen.add(propellersList.get(i) + 10);
+					power = propellersList.get(i).getPower();
+					if (power < propellersList.get(i).getMaxPower())
+						{
+							propellersList.get(i).setPower(power + 10);
+						}
 				}
-			return speedUpTen;
-
+			return power;
 		}
 
 	// Method fase3
-	public List<Integer> brake(List<Integer> propellersList)
+	public void brake(List<Propeller> propellersList) throws MyException
 		{
+			int j;
+			double power;
 
-			return null;
+			for (j = 0; j < propellersList.size(); j++)
+				{
+					power = propellersList.get(j).getPower();
+					if (power < 10)
+						{
+							try
+								{
+									throw new MyException();
+								} catch (MyException me)
+								{
+									me.printStopRocket();
+								}
+						}
+					propellersList.get(j).setPower(power - 10);
+				}
+		}
+
+	// Method fase3
+	private double getAllMaxPower(List<Propeller> maxPowerList)
+		{
+			int i;
+			double powerMax = 0;
+			for (i = 0; i < maxPowerList.size(); i++)
+				{
+					powerMax += maxPowerList.get(i).getMaxPower();
+				}
+			return powerMax;
+		}
+
+	// Method fase3
+	private int getAllPower(List<Propeller> powerList)
+		{
+			int j;
+			int power = 0;
+			for (j = 0; j < powerList.size(); j++)
+				{
+					power += powerList.get(j).getPower();
+				}
+			return power;
+		}
+
+	public void addSpeed(int num, List<Propeller> propellers)
+		{
+			for (int i = 0; i < num; i++)
+				{
+					speedUp(propellers);
+				}
+		}
+
+	public void lowerSpeed(int num, List<Propeller> propellers)
+		{
+			for (int i = 0; i < num; i++)
+				{
+					try
+						{
+							brake(propellers);
+						} catch (Exception e)
+						{
+							e.printStackTrace();
+						}
+				}
+		}
+
+	// Method fase3
+	public double rocketSpeed(List<Propeller> propellers)
+		{
+			double speed;
+			int power;
+			double maxPower;
+			power = getAllPower(propellers);
+			maxPower = getAllMaxPower(propellers);
+			speed = power + 100 * Math.sqrt(maxPower);
+			return speed;
+
 		}
 }
