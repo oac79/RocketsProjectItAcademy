@@ -5,8 +5,8 @@ import java.util.List;
 import app.model.Propeller;
 
 public class RocketHandlers {
-	private static final double ACCELERATE = 10;
-	private static final double DECREASE = 10;
+	private final double ACCELERATE = 10;
+	private final double DECREASE = 10;
 
 	public RocketHandlers()
 		{
