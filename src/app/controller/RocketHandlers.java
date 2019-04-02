@@ -107,13 +107,7 @@ public class RocketHandlers {
 		{
 			for (int i = 0; i < num; i++)
 				{
-					try
-						{
-							brake(propellers);
-						} catch (Exception e)
-						{
-							e.printStackTrace();
-						}
+					brake(propellers);
 				}
 		}
 
