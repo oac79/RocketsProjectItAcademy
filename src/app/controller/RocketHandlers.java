@@ -2,7 +2,6 @@ package app.controller;
 
 import java.util.List;
 
-import app.exception.MyException;
 import app.model.Propeller;
 
 public class RocketHandlers {
@@ -57,7 +56,7 @@ public class RocketHandlers {
 		}
 
 	// Method fase3
-	public void brake(List<Propeller> propellersList) throws MyException
+	public void brake(List<Propeller> propellersList)
 		{
 			int j;
 			double power;
@@ -65,17 +64,10 @@ public class RocketHandlers {
 			for (j = 0; j < propellersList.size(); j++)
 				{
 					power = propellersList.get(j).getPower();
-					if (power < 10)
+					if (power >= 10)
 						{
-							try
-								{
-									throw new MyException();
-								} catch (MyException me)
-								{
-									me.printStopRocket();
-								}
+							propellersList.get(j).setPower(power - 10);
 						}
-					propellersList.get(j).setPower(power - 10);
 				}
 		}
 
@@ -92,10 +84,10 @@ public class RocketHandlers {
 		}
 
 	// Method fase3
-	private int getAllPower(List<Propeller> powerList)
+	private double getAllPower(List<Propeller> powerList)
 		{
 			int j;
-			int power = 0;
+			double power = 0;
 			for (j = 0; j < powerList.size(); j++)
 				{
 					power += powerList.get(j).getPower();
@@ -129,7 +121,7 @@ public class RocketHandlers {
 	public double rocketSpeed(List<Propeller> propellers)
 		{
 			double speed;
-			int power;
+			double power;
 			double maxPower;
 			power = getAllPower(propellers);
 			maxPower = getAllMaxPower(propellers);

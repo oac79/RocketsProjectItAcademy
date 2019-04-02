@@ -16,7 +16,7 @@ public class Rocket {
 	public Rocket(String code, List<Propeller> propellers) throws MyException
 		{
 			if (!MyException.checkCode(code))
-				throw new MyException("--WARNING CODE--");
+				throw new MyException("--WARNING ERROR CODE--");
 			this.code = code;
 			this.propellers = propellers;
 

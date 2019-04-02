@@ -17,9 +17,4 @@ public class MyException extends Exception {
 			return (code.length() == 8);
 		}
 
-	public void printStopRocket()
-		{
-			System.err.println("-------------STOP--------------");
-		}
-
 }

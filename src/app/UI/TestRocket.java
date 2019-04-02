@@ -61,9 +61,9 @@ public class TestRocket {
 			System.out.println("-------------------------------------------------------------------------");
 
 			double sumPower = rocketHandlers.rocketSpeed(propellers1);
-			System.out.println("POWER ROCKET-1" + sumPower);
+			System.out.println("POWER ROCKET_1 = " + sumPower);
 			double sumPower2 = rocketHandlers.rocketSpeed(propellers2);
-			System.out.println("POWER ROCKET-2" + sumPower2);
+			System.out.println("POWER ROCKET_2 = " + sumPower2);
 
 		}
 

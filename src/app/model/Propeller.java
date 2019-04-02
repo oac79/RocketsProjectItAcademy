@@ -11,7 +11,7 @@ public class Propeller {
 
 		}
 
-	public Propeller(int maxPower) throws Exception
+	public Propeller(int maxPower)
 		{
 			this.maxPower = maxPower;
 			this.power = 0;
