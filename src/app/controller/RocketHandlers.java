@@ -5,6 +5,8 @@ import java.util.List;
 import app.model.Propeller;
 
 public class RocketHandlers {
+	private static final double ACCELERATE = 10;
+	private static final double DECREASE = 10;
 
 	public RocketHandlers()
 		{
@@ -49,7 +51,7 @@ public class RocketHandlers {
 					power = propellersList.get(i).getPower();
 					if (power < propellersList.get(i).getMaxPower())
 						{
-							propellersList.get(i).setPower(power + 10);
+							propellersList.get(i).setPower(power + ACCELERATE);
 						}
 				}
 			return power;
@@ -66,7 +68,7 @@ public class RocketHandlers {
 					power = propellersList.get(j).getPower();
 					if (power >= 10)
 						{
-							propellersList.get(j).setPower(power - 10);
+							propellersList.get(j).setPower(power - DECREASE);
 						}
 				}
 		}
